@@ -49,3 +49,64 @@ func (i *IPGroup) AddIPs(ips []string) {
 func (i *IPGroup) AddComments(comments []string) {
 	i.Comment = strings.Join(comments, ",")
 }
+
+type ACL struct {
+	DstAddr    string `json:"dst_addr"`
+	Src6Addr   string `json:"src6_addr"`
+	Dst6Addr   string `json:"dst6_addr"`
+	Src6Mode   int    `json:"src6_mode"`
+	Dst6Mode   int    `json:"dst6_mode"`
+	Src6Suffix string `json:"src6_suffix"`
+	Dst6Suffix string `json:"dst6_suffix"`
+	Src6Mac    string `json:"src6_mac"`
+	Dst6Mac    string `json:"dst6_mac"`
+	Protocol   string `json:"protocol"`
+	SrcPort    string `json:"src_port"`
+	DstPort    string `json:"dst_port"`
+	Week       string `json:"week"`
+	IPType     string `json:"ip_type"`
+	ID         int    `json:"id"`
+	Enabled    string `json:"enabled"`
+	Comment    string `json:"comment"`
+	Action     string `json:"action"`
+	Dir        string `json:"dir"`
+	Ctdir      int    `json:"ctdir"`
+	Iinterface string `json:"iinterface"`
+	Ointerface string `json:"ointerface"`
+	Time       string `json:"time"`
+	SrcAddr    string `json:"src_addr"`
+}
+
+func (i *ACL) SetSrcAddrIPs(ips []string) {
+	i.SrcAddr = strings.Join(ips, ",")
+}
+
+func (i *ACL) GetSrcAddrIPs() []string {
+	return strings.Split(i.SrcAddr, ",")
+}
+
+func (i *ACL) AddSrcAddrIPs(ips []string) {
+	curiIPs := strings.Split(i.SrcAddr, ",")
+	for _, ip := range ips {
+		for _, curIP := range curiIPs {
+			if curIP == ip {
+				return
+			}
+		}
+		curiIPs = append(curiIPs, ip)
+	}
+	i.SrcAddr = strings.Join(curiIPs, ",")
+}
+
+func (i *ACL) DelSrcAddrIPs(ips []string) {
+	curiIPs := strings.Split(i.SrcAddr, ",")
+	for _, ip := range ips {
+		for i, curIP := range curiIPs {
+			if curIP == ip {
+				curiIPs = append(curiIPs[:i], curiIPs[i+1:]...)
+				break
+			}
+		}
+	}
+	i.SrcAddr = strings.Join(curiIPs, ",")
+}

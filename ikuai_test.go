@@ -1,12 +1,13 @@
 package ikuai
 
 import (
-	"github.com/jakeslee/ikuai/action"
 	"testing"
+
+	"github.com/jakeslee/ikuai/action"
 )
 
 func getClient() *IKuai {
-	i := NewIKuai("http://10.10.1.253", "test", "test123")
+	i := NewIKuai("http://10.10.1.253", "test", "test123", true, true)
 
 	return i
 }
