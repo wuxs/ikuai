@@ -56,3 +56,66 @@ func NewACLShowAction() *Action {
 		},
 	}
 }
+
+func NewACLAddAction(acl *ACL) *Action {
+	return &Action{
+		Action:   "add",
+		FuncName: "acl",
+		Param: map[string]interface{}{
+			"dst_addr":    acl.DstAddr,
+			"src6_addr":   acl.Src6Addr,
+			"dst6_addr":   acl.Dst6Addr,
+			"src6_mode":   acl.Src6Mode,
+			"dst6_mode":   acl.Dst6Mode,
+			"src6_suffix": acl.Src6Suffix,
+			"dst6_suffix": acl.Dst6Suffix,
+			"src6_mac":    acl.Src6Mac,
+			"dst6_mac":    acl.Dst6Mac,
+			"protocol":    acl.Protocol,
+			"src_port":    acl.SrcPort,
+			"dst_port":    acl.DstPort,
+			"week":        acl.Week,
+			"ip_type":     acl.IPType,
+			"id":          acl.ID,
+			"enabled":     acl.Enabled,
+			"comment":     acl.Comment,
+			"action":      acl.Action,
+			"dir":         acl.Dir,
+			"ctdir":       acl.Ctdir,
+			"iinterface":  acl.Iinterface,
+			"ointerface":  acl.Ointerface,
+			"time":        acl.Time,
+			"src_addr":    acl.SrcAddr,
+		},
+	}
+}
+
+func NewACLDownAction(id string) *Action {
+	return &Action{
+		Action:   "down",
+		FuncName: "acl",
+		Param: map[string]interface{}{
+			"id": id,
+		},
+	}
+}
+
+func NewACLUpAction(id string) *Action {
+	return &Action{
+		Action:   "down",
+		FuncName: "acl",
+		Param: map[string]interface{}{
+			"id": id,
+		},
+	}
+}
+
+func NewACLDeleteAction(id string) *Action {
+	return &Action{
+		Action:   "del",
+		FuncName: "acl",
+		Param: map[string]interface{}{
+			"id": id,
+		},
+	}
+}
