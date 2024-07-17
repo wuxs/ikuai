@@ -6,10 +6,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/go-resty/resty/v2"
-	"github.com/jakeslee/ikuai/action"
 	"log"
 	"net/http"
+
+	"github.com/go-resty/resty/v2"
+	"github.com/wuxs/ikuai/action"
 )
 
 type IKuai struct {

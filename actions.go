@@ -1,7 +1,7 @@
 package ikuai
 
 import (
-	"github.com/jakeslee/ikuai/action"
+	"github.com/wuxs/ikuai/action"
 )
 
 // EditIPGroup 修改 IP 组

@@ -3,7 +3,7 @@ package ikuai
 import (
 	"testing"
 
-	"github.com/jakeslee/ikuai/action"
+	"github.com/wuxs/ikuai/action"
 )
 
 func getClient() *IKuai {

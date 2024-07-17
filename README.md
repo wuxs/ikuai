@@ -5,7 +5,7 @@
 ### 依赖
 
 ```shell
-go get -u https://github.com/jakeslee/ikuai
+go get -u https://github.com/wuxs/ikuai
 ```
 
 ### 使用
