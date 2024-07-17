@@ -1,6 +1,8 @@
 package ikuai
 
 import (
+	"strings"
+
 	"github.com/wuxs/ikuai/action"
 )
 
@@ -66,6 +68,50 @@ func (i *IKuai) ShowMonitorInterface() (*action.ShowMonitorInterfaceResult, erro
 	resp := &action.ShowMonitorInterfaceResult{}
 
 	_, err := i.Run(i.session, action.NewMonitorInterfaceAction(), resp)
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+func (i *IKuai) ShowACLList() (*action.ShowACLResult, error) {
+	resp := &action.ShowACLResult{}
+
+	_, err := i.Run(i.session, action.NewACLShowAction(), resp)
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+func (i *IKuai) AddNewACL(ips []string) (*action.AddACLResult, error) {
+	acl := &action.ACL{
+		Action:     "accept",
+		Dir:        "forward",
+		Enabled:    "yes",
+		Iinterface: "any",
+		IPType:     "4",
+		Ointerface: "any",
+		Protocol:   "any",
+		SrcAddr:    strings.Join(ips, ","),
+		Time:       "00:00-23:59",
+		Week:       "1234567",
+	}
+	resp := &action.AddACLResult{}
+	_, err := i.Run(i.session, action.NewACLAddAction(acl), resp)
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+func (i *IKuai) DelNewACL(id int) (*action.Result, error) {
+	resp := &action.Result{}
+
+	_, err := i.Run(i.session, action.NewACLDelAction(id), resp)
 	if err != nil {
 		return nil, err
 	}

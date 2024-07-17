@@ -44,6 +44,13 @@ type ShowACLResult struct {
 	} `json:"Data"`
 }
 
+type AddACLResult struct {
+	Result
+	RowID int `json:"RowId"`
+}
+
+type DelACLResult Result
+
 func NewACLShowAction() *Action {
 	return &Action{
 		Action:   "show",
@@ -100,9 +107,9 @@ func NewACLDownAction(id string) *Action {
 	}
 }
 
-func NewACLUpAction(id string) *Action {
+func NewACLUpAction(id int) *Action {
 	return &Action{
-		Action:   "down",
+		Action:   "up",
 		FuncName: "acl",
 		Param: map[string]interface{}{
 			"id": id,
@@ -110,7 +117,7 @@ func NewACLUpAction(id string) *Action {
 	}
 }
 
-func NewACLDeleteAction(id string) *Action {
+func NewACLDelAction(id int) *Action {
 	return &Action{
 		Action:   "del",
 		FuncName: "acl",
